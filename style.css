@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'pixelated';
+    src: url('font/Pixeled.ttf') format('truetype');
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Pixelated', sans-serif;
+    background-color: black;
+    flex-direction: column;
+}
+
+.grid {
+    position: absolute;
+    width: 780px;
+    height: 600px;
+    border: 1px solid rgb(113, 0, 148);
+    margin-top: 100px;
+    overflow: hidden;
+    align-self: center;
+    margin-top: 10px;
+}
+
+.user {
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    background-color: rgb(234, 2, 215);
+}
+ 
+.ball {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 242, 63);
+}
+
+.block {
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    background-color: rgb(255, 108, 250);
+}
+
+h1 {
+    font-family: pixelated;
+    color: rgb(0, 247, 255);
+}
+
+#fps-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 800px;
+    margin-bottom: 50px;
+}
+
+#fps-counter {
+    font-size: 16px;
+    color: white;
+    /* margin-bottom: 10px; */
+}
