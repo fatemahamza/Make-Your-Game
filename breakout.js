@@ -1,16 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid');
     const scoreDisplay = document.querySelector('#score');
+    const timerDisplay = document.querySelector('#timer');
+    const livesDisplay = document.querySelector('#lives');
     const blockWidth = 100;
     const blockHeight = 20;
     const boardWidth = 780;
     const boardHeight = 600;
-    let xDirection = -5;
-    let yDirection = 5;
+    let xDirection = -4;
+    let yDirection = 4;
     const ballDiameter = 20;
 
     let timerID;
     let score = 0;
+    let lives = 3;
+    let time = 0;
 
     const userStart = [330, 10];
     let currentPosition = userStart;
@@ -107,9 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
         drawBall();
         checkForCollision();
     }
-    timerID = setInterval(moveBall, 30);
+
+    function updateTimer() {
+        time++;
+        timerDisplay.innerText = `Timer: ${time}`;
+    }
 
     function checkForCollision() {
+        // Check for block collisions
         for (let i = 0; i < blocks.length; i++) {
             if (
                 currentBallPosition[0] + ballDiameter > blocks[i].bottomLeft[0] &&
@@ -122,86 +131,66 @@ document.addEventListener('DOMContentLoaded', () => {
                 blocks.splice(i, 1);
                 score++;
                 scoreDisplay.innerHTML = score;
-                changeDirection();
+
+                // Determine direction change based on the side hit
+                if (
+                    currentBallPosition[1] + ballDiameter - yDirection <= blocks[i].bottomLeft[1] ||
+                    currentBallPosition[1] - yDirection >= blocks[i].topLeft[1]
+                ) {
+                    yDirection *= -1; // Reverse y-direction
+                } else {
+                    xDirection *= -1; // Reverse x-direction
+                }
+
                 if (blocks.length === 0) {
                     scoreDisplay.innerHTML = 'You Win!';
                     clearInterval(timerID);
+                    clearInterval(timerInterval);
+                    return; // Ensure game ends immediately
                 }
             }
         }
-        if (
-            currentBallPosition[0] >= boardWidth - ballDiameter ||
-            currentBallPosition[0] <= 0 ||
-            currentBallPosition[1] >= boardHeight - ballDiameter
-        ) {
-            changeDirection();
+
+        // Check for wall collisions
+        if (currentBallPosition[0] >= boardWidth - ballDiameter || currentBallPosition[0] <= 0) {
+            xDirection *= -1;
+        }
+        if (currentBallPosition[1] >= boardHeight - ballDiameter) {
+            yDirection *= -1;
         }
 
-        if (
-            currentBallPosition[1] <= 0
-        ) {
-            clearInterval(timerID);
-            scoreDisplay.innerHTML = 'Game Over';
-            document.removeEventListener('keydown', moveUser);
+        // Check for game over
+        if (currentBallPosition[1] <= 0) {
+            lives-=1;
+            livesDisplay.innerText = `Lives: ${lives}`;
+            if (lives === 0) {
+                clearInterval(timerID);
+                clearInterval(timerInterval);
+                scoreDisplay.innerHTML = 'Game Over';
+                document.removeEventListener('keydown', moveUser);
+                return; // Ensure game ends immediately
+            } else {
+                currentBallPosition = [...ballStart];
+                drawBall();
+            }
         }
 
-        // Checks for user paddle collisions
+        // Check for user paddle collisions
         if (
             currentBallPosition[0] + ballDiameter > currentPosition[0] &&
             currentBallPosition[0] < currentPosition[0] + blockWidth &&
             currentBallPosition[1] + ballDiameter > currentPosition[1] &&
             currentBallPosition[1] < currentPosition[1] + blockHeight
         ) {
-            changeDirection();
+            yDirection *= -1; // Reverse y-direction on paddle hit
         }
     }
-
-    function changeDirection() {
-        if (xDirection === 5 && yDirection === 5) {
-            yDirection = -5;
-            return;
-        }
-        if (xDirection === 5 && yDirection === -5) {
-            xDirection = -5;
-            return;
-        }
-        if (xDirection === -5 && yDirection === -5) {
-            yDirection = 5;
-            return;
-        }
-        if (xDirection === -5 && yDirection === 5) {
-            xDirection = 5;
-            return;
-        }
-    }
-
-    class FPSCounter {
-        constructor() {
-            this.fps = 0;
-            this.lastUpdate = performance.now();
-            this.frameCount = 0;
-        }
-
-        update() {
-            this.frameCount++;
-            const now = performance.now();
-            const elapsed = now - this.lastUpdate;
-            if (elapsed >= 1000) {
-                this.fps = this.frameCount;
-                this.frameCount = 0;
-                this.lastUpdate = now;
-                fpsCounterDisplay.textContent = `FPS: ${this.fps}`;
-            }
-        }
-    }
-
-    const fpsCounter = new FPSCounter();
 
     function gameLoop() {
         moveBall();
-        fpsCounter.update();
         requestAnimationFrame(gameLoop);
     }
 
     gameLoop();
+    const timerInterval = setInterval(updateTimer, 1000);
 });
