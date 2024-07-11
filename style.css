@@ -1,71 +1,129 @@
 @font-face {
     font-family: 'pixelated';
-    src: url('font/Pixeled.ttf') format('truetype');
+    src: url('Pixeled.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'pixelated';
+    font-size: x-small;
 }
 
 body {
     display: flex;
+    align-items: center;
     justify-content: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Pixelated', sans-serif;
-    background-color: black;
+    flex-direction: column; /* Align items in a column */
+    min-height: 100vh;
+    background: rgb(255, 225, 244);
+}
+
+.title {
+    margin-bottom: 20px;
+    font-weight: bolder;
+    font-size: 2rem; /* Adjust the font size as needed */
+    color: rgb(255, 156, 219);
+}
+
+.wrapper {
+    width: 65vmin;
+    height: 70vmin;
+    border-radius: 5px;
+    background: rgb(255, 180, 227);
+    display: flex; /* Ensure child elements are displayed correctly */
     flex-direction: column;
-}
-
-
-.grid {
-    position: absolute;
-    width: 780px;
-    height: 600px;
-    border: 1px solid rgb(151, 1, 196);
-    margin-top: 100px;
     overflow: hidden;
-    align-self: center;
-    margin-top: 10px;
 }
 
-.user {
-    position: absolute;
-    width: 100px;
-    height: 20px;
-    background-color: rgb(249, 197, 245);
-}
- 
-.ball {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    background-color: rgb(255, 242, 63);
-}
-
-.block {
-    position: absolute;
-    width: 100px;
-    height: 20px;
-    background-color: rgb(254, 149, 250);
-}
-
-h1 {
-    font-family: pixelated;
-    color: rgb(0, 247, 255);
-}
-
-.game-info {
+.game-details {
+    color: rgb(255, 125, 199);
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 20px 27px;
     display: flex;
     justify-content: space-between;
-    width: 780px; /* Match the grid width */
-    margin-bottom: 10px;
 }
 
-#timer, #lives {
-    font-size: 24px;
+.play-board {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template: repeat(30, 1fr) / repeat(30, 1fr);
+    background: rgb(255, 156, 219);
 }
 
-#score {
+.play-board .food {
+    background-image: url(strawberri.png);
+    background-size: cover;
+    z-index: 1; /* Lower layer */
+}
+
+.play-board .head {
+    background: rgb(255, 225, 244);
+    position: relative;
+    z-index: 2; /* Higher layer than food */
+}
+
+.play-board .head img.ribbon-img {
     position: absolute;
-    font-size: 24px;
-    top: 50%;
-    transform: translateY(-50%);
+    width: 60%;
+    height: auto;
+    top: 0;
+    left: 0;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3; /* Ensure modal is on the top layer */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    color: rgb(255, 125, 199);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgb(255, 180, 227);
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    height: 20%;
+    text-align: center;
+    align-items: center;
+  }
+  
+  #continueButton {
+    width: 50%;
+    background: rgb(255, 180, 227);
+    color: rgb(255, 125, 199) ;
+  }
+
+  #restartButton {
+    width: 50%;
+    background: rgb(255, 180, 227);
+    color: rgb(255, 125, 199);
+  }
+
+  #continueButton:hover {
+    cursor: pointer;
+    transform: translateY(2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  #restartButton:hover {
+    cursor: pointer;
+    transform: translateY(2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }

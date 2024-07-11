@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breakout</title>
+    <title>Snake Game</title>
     <link rel="stylesheet" href="style.css">
+    <script src="snake.js" defer></script>
 </head>
 <body>
-    <div class="game-info">
-        <h1 id="timer">0</h1>
-        <h1 id="lives">3</h1>
+    <div class="title">Pinkie The Python</div>
+    <div class="wrapper">
+        <div class="game-details">
+            <span class="score">Score: 0</span>
+            <span class="lives">Lives: 3</span>
+            <span class="timer">Timer: 0s</span>
+        </div>
+        <div class="play-board"></div>
+        <div id="pauseModal" class="modal">
+            <div class="modal-content">
+              <p>Game Paused</p>
+              <button id="continueButton">Continue</button>
+              <button id="restartButton">Restart</button>
+            </div>
     </div>
-    <div class="grid">
-        <h1 id="score">0</h1>
-    </div>
-    <script src="breakout.js"></script>
 </body>
 </html>
