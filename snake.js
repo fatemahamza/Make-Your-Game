@@ -9,7 +9,7 @@ let snakeBody = [];
 let velocityX = 0, velocityY = 0;
 let gameOver = false;
 let lastRenderTime = 0;
-const snakeSpeed = 100; // Speed of the snake in milliseconds
+const snakeSpeed = 100;
 let score = 0;
 let timer = 0;
 let lives = 3;
@@ -41,7 +41,7 @@ const changeDirection = (e) => {
     } else if (e.key === "ArrowRight" && velocityX != -1) {
         velocityX = 1;
         velocityY = 0;
-    } else if (e.key.toLowerCase() === 'p') { // Ensure lowercase 'p' is captured
+    } else if (e.key.toLowerCase() === 'p') {
         paused = !paused;
         if (paused) {
             pauseModal.style.display = "flex";
@@ -77,11 +77,11 @@ const resetGame = () => {
     gameOver = false;
     changeFoodPosition();
     updateDisplay();
-    gameStarted = false; // Reset game started flag
-    timer = 0; // Reset the timer
-    timerDisplay.textContent = `Timer: ${timer}`; // Update timer display
-    clearInterval(timerIntervalID); // Clear any existing timer interval
-    window.requestAnimationFrame(initGame); // Restart the game loop
+    gameStarted = false; 
+    timer = 0;
+    timerDisplay.textContent = `Timer: ${timer}`;
+    clearInterval(timerIntervalID);
+    window.requestAnimationFrame(initGame);
 }
 
 // Update display
@@ -146,7 +146,7 @@ const initGame = (currentTime) => {
 
 // Start the timer
 const startTimer = () => {
-    clearInterval(timerIntervalID); // Clear any existing timer interval
+    clearInterval(timerIntervalID);
     timerIntervalID = setInterval(() => {
         if (!paused) {
             timer++;
