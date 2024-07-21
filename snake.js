@@ -2,6 +2,7 @@ const playBoard = document.querySelector(".play-board");
 const scoreDisplay = document.querySelector(".score");
 const livesDisplay = document.querySelector(".lives");
 const timerDisplay = document.querySelector(".timer");
+const audio = document.getElementById('myAudio');
 
 let foodX, foodY;
 let snakeX = 5, snakeY = 10;
@@ -61,6 +62,7 @@ const handleGameOver = () => {
         alert(`Oops! Lives remaining: ${lives}`);
         resetGame();
     } else {
+        playAudio();
         alert("Game Over! Press OK to restart.");
         clearInterval(timerIntervalID);
         location.reload();
@@ -173,6 +175,10 @@ restartButton.addEventListener("click", () => {
     updateDisplay();
     window.requestAnimationFrame(initGame);
 });
+
+const playAudio = () => {
+    audio.play();
+}
 
 changeFoodPosition();
 document.addEventListener("keydown", changeDirection);
