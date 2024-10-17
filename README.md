@@ -9,7 +9,7 @@ The classic snake game built with Javascript, html, css, and a LOT of pink.
     cd make-your-game
     ```
 
-2. Open the game in your browser (if it's a web game):
+2. Open the game in your browser:
 
     ```bash
     open index.html
