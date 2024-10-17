@@ -52,22 +52,19 @@ body {
     display: grid;
     grid-template: repeat(30, 1fr) / repeat(30, 1fr);
     background: rgb(255, 156, 219);
-    z-index: 1;
-    transform: translateZ(0);
+    /* z-index: 1; */
 }
 
 .play-board .food {
     background-image: url(strawberri.png);
     background-size: cover;
-    z-index: 2; /* Lower layer */
-    transform: translateZ(0);
+    /* z-index: 2; /* Lower layer */
 }
 
 .play-board .head {
     background: rgb(255, 225, 244);
     position: relative;
-    z-index: 3; /* Higher layer than food */
-    transform: translateZ(0);
+    /* z-index: 3; /* Higher layer than food */
 }
 
 .play-board .head img.ribbon-img {
@@ -105,6 +102,8 @@ body {
     height: 20%;
     text-align: center;
     align-items: center;
+    z-index: 400;
+    transform: translateZ(0);
   }
   
   #continueButton {
