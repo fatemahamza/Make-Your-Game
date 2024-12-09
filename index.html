@@ -6,25 +6,62 @@
     <title>Snake Game</title>
     <link rel="stylesheet" href="style.css">
     <script src="snake.js" defer></script>
+    <script src="storyBoard.js" defer></script>
 </head>
 <body>
-    <div class="title">Pinkie The Python</div>
-    <audio id="myAudio">
-        <source src="violin.m4a" type="audio/mp4">
-    </audio>
-    <div class="wrapper">
-        <div class="game-details">
-            <span class="score">Score: 0</span>
-            <span class="lives">Lives: 3</span>
-            <span class="timer">Timer: 0s</span>
+
+    <!-- Storyboard Section -->
+    <div id="storyboard">
+        <div class="scroll-container">
+            <img src="slides/s1.png" alt="slide1">
+            <img src="slides/s2.png" alt="slide2">
+            <img src="slides/s3.png" alt="slide1">
+            <img src="slides/s4.png" alt="slide1">
         </div>
-        <div class="play-board"></div>
-        <div id="pauseModal" class="modal">
-            <div class="modal-content">
-              <p>Game Paused</p>
-              <button id="continueButton">Continue</button>
-              <button id="restartButton">Restart</button>
-            </div>
+        <button id="start-button" class="start-button">Start The Game!</button>
     </div>
+
+    <!-- Game Section -->
+    <div id="game" style="display: none;">
+        <div class="title">Pinkie The Python</div>
+        <div class="message" id="message" style="display: none;">You collected 10 strawberries :D</div>
+        <audio id="myAudio">
+            <source src="violin.m4a" type="audio/mp4">
+        </audio>
+        <div class="wrapper">
+            <div class="game-details">
+                <span class="score">Score: 0</span>
+                <span class="lives">Lives: 3</span>
+                <span class="timer">Timer: 0s</span>
+            </div>
+            <div class="play-board"></div>
+            <div id="pauseModal" class="modal">
+                <div class="modal-content">
+                    <p>Game Paused</p>
+                    <button id="continueButton">Continue</button>
+                    <button id="restartButton">Restart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Victory -->
+     <div id="victory" style="display: none;">
+        <div class="scroll-container">
+            <img src="slides/v.png" alt="victory">
+        </div>
+        <button id="home-button-victory" class="show-home-button" data-screen="victory">Home</button>
+        <button id="restart-button-victory" class="restart-button">Restart</button>
+     </div>
+
+    <!-- Lose -->
+     <div id="lose" style="display: none;">
+        <div class="scroll-container">
+            <img src="slides/l.png" alt="victory">
+        </div>
+        <button id="home-button-lose" class="show-home-button">Home</button>
+        <button id="restart-button-lose" class="restart-button">Restart</button>
+     </div>
+
 </body>
 </html>

@@ -129,3 +129,88 @@ body {
     transform: translateY(2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
+
+  #storyboard {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .scroll-container {
+    height: 541px;
+    width: 900px;
+    background-color: rgb(255, 225, 244);
+    overflow: auto;
+    white-space: nowrap;
+    padding: 10px;
+  }
+  
+  .scroll-container img {
+    height: 500px;
+    /* padding: 10px; */
+  }
+
+  .start-button {
+    margin-top: 20px;
+    background: rgb(255, 125, 199);
+    color: rgb(255, 180, 227);
+    height: 50px;
+    width: 200px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    align-self: center;
+  }
+
+  .start-button:hover {
+    background: rgb(255, 180, 227);
+    color: rgb(255, 125, 199);
+    /* flex-direction: column; */
+  }
+
+  .message {
+    color: red;
+  }
+
+  .show-home-button {
+    margin-top: 20px;
+    background: rgb(255, 125, 199);
+    color: rgb(255, 180, 227);
+    height: 50px;
+    width: 200px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    align-self: center;
+  }
+
+  .show-home-button:hover {
+    background: rgb(255, 180, 227);
+    color: rgb(255, 125, 199);
+  }
+
+  .restart-button {
+    margin-top: 20px;
+    background: rgb(255, 125, 199);
+    color: rgb(255, 180, 227);
+    height: 50px;
+    width: 200px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    align-self: center;
+  }
+
+  .restart-button:hover {
+    background: rgb(255, 180, 227);
+    color: rgb(255, 125, 199);
+  }
+
+  #victory {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #lose {
+    display: flex;
+    flex-direction: column;
+  }

@@ -25,6 +25,13 @@ const changeFoodPosition = () => {
 
 // Snake moving directions
 const changeDirection = (e) => {
+
+    const gameSection = document.getElementById("game");
+    
+    if (gameSection.style.display === "none" || paused) {
+        return; // Do nothing if the game is hidden or paused
+    }
+
     if (!gameStarted && !paused) {
         startTimer();
         gameStarted = true;
@@ -63,9 +70,16 @@ const handleGameOver = () => {
         resetGame();
     } else {
         playAudio();
-        alert("Game Over! Press OK to restart.");
-        clearInterval(timerIntervalID);
-        location.reload();
+        // alert("Game Over! Press OK to restart.");
+        // clearInterval(timerIntervalID);
+        // location.reload();
+        if (score >= 10) {
+            document.getElementById("game").style.display = "none";
+            document.getElementById("victory").style.display = "block";
+        } else {
+            document.getElementById("game").style.display = "none";
+            document.getElementById("lose").style.display = "block";
+        }
     }
 }
 
@@ -111,6 +125,10 @@ const initGame = (currentTime) => {
         snakeBody.push([foodX, foodY]);
         score++;
         updateDisplay();
+    }
+
+    if (score === 10) {
+        message.style.display = "block"; 
     }
 
     // Snake body gets bigger with food
